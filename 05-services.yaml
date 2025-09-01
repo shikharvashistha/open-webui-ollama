@@ -1,0 +1,36 @@
+# Ollama Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: ollama-service
+  namespace: ollama-system
+  labels:
+    app: ollama
+spec:
+  type: ClusterIP
+  selector:
+    app: ollama
+  ports:
+  - name: http
+    port: 11434
+    targetPort: 11434
+    protocol: TCP
+---
+# Open WebUI Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: open-webui-service
+  namespace: ollama-system
+  labels:
+    app: open-webui
+spec:
+  type: NodePort
+  selector:
+    app: open-webui
+  ports:
+  - name: http
+    port: 8080
+    targetPort: 8080
+    nodePort: 30080  # Access via minikube's IP:30080
+    protocol: TCP
