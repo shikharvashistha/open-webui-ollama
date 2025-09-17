@@ -27,17 +27,17 @@ spec:
         - name: WEBUI_SECRET_KEY
           value: "AAAAC3NzaC1lZDI1NTE5AAAAIIx6qu3/y0p4H5vB9jhHU4FdCfj7M8Ckp4D4kjcVFfv2"
         - name: WEBUI_AUTH
-          value: "False"  # Disable auth for simplicity - change to "True" for production
+          value: "False"  
         volumeMounts:
         - name: webui-data
           mountPath: /app/backend/data
         resources:
           requests:
-            memory: "512Mi"
-            cpu: "250m"
+            memory: "4Gi"
+            cpu: "4"
           limits:
-            memory: "2Gi"
-            cpu: "1"
+            memory: "8Gi"
+            cpu: "8"
         livenessProbe:
           httpGet:
             path: /health

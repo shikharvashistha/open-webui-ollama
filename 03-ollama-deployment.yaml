@@ -30,14 +30,14 @@ spec:
           mountPath: /scripts
         resources:
           requests:
-            memory: "2Gi"
-            cpu: "500m"
-          limits:
             memory: "4Gi"
-            cpu: "2"
+            cpu: "4"
+          limits:
+            memory: "8Gi"
+            cpu: "8"
       containers:
       - name: ollama
-        image: ollama/ollama:latest
+        image: ollama/ollama:0.11.11
         ports:
         - containerPort: 11434
           name: http
@@ -49,12 +49,13 @@ spec:
           mountPath: /root/.ollama
         resources:
           requests:
-            memory: "2Gi"
-            cpu: "1"
+            memory: "4Gi"
+            cpu: "4"
+            # nvidia.com/gpu: 1
           limits:
             memory: "8Gi"
-            cpu: "4"
-            # nvidia.com/gpu: "0"
+            cpu: "8"
+            # nvidia.com/gpu: 1
         livenessProbe:
           httpGet:
             path: /api/version
